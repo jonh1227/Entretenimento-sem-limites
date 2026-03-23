@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Planos e Teste Grátis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="card">
+    <div class="steps-header">
+        <div class="step-indicators">
+            <div class="step-badge" id="step1Badge">Etapa 1: Conheça o IPTV</div>
+            <div class="step-badge" id="step2Badge">Etapa 2: Escolha seu plano</div>
+            <div class="step-badge" id="step3Badge">Etapa 3: Teste Grátis</div>
+        </div>
+    </div>
+    <div class="step-container">
+
+        <div id="step1" class="step active-step">
+            <div class="hero-badge">✨ SEM COMPROMISSO</div>
+            <h1>Entretenimento sem limites,<br>do jeito que você merece.</h1>
+            <div class="feature-list">
+                <div class="feature-item"><span class="feature-icon">📺</span> Canais HD, filmes e séries</div>
+                <div class="feature-item"><span class="feature-icon">⚡</span> Sem travas, tecnologia anti-buffering</div>
+                <div class="feature-item"><span class="feature-icon">📱</span> Compatível com TV Box, Smart TV, celular, PC e outros</div>
+                <div class="feature-item"><span class="feature-icon">🔄</span> Suporte 24h e atualizações automáticas</div>
+                <div class="feature-item"><span class="feature-icon">🎁</span> Teste grátis de 4h para você experimentar!</div>
+            </div>
+            <button class="btn-next" id="nextToPlans">Próximo →</button>
+        </div>
+
+        <div id="step2" class="step">
+            <div class="hero-badge">💎 Escolha o plano ideal</div>
+            <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Escolha seu plano</h2>
+            <p style="color:#aaa; margin-bottom: 1rem;">Teste grátis incluso em qualquer opção. Toque em "Teste Grátis" para solicitar.</p>
+            <div class="plans-grid" id="plansContainer">
+                <div class="plan-card" data-plan="Básico">
+                    <div class="plan-name">📡 Básico</div>
+                    <div class="plan-price">R$ 15,00/mês</div>
+                    <div class="plan-desc">1 tela<br>1 servido<br>Conteúdo básico<br>Melhor custo-benefício</div>
+                    <button class="teste-btn" data-plan-name="Básico">🎯 Teste Grátis</button>
+                </div>
+                <div class="plan-card" data-plan="Básico">
+                    <div class="plan-name">📡 Básico Plus</div>
+                    <div class="plan-price">R$ 20,00/mês</div>
+                    <div class="plan-desc"> 2 telas simultâneas<br>1 servido<br>Conteúdo básico<br>Melhor custo-benefício</div>
+                    <button class="teste-btn" data-plan-name="Básico">🎯 Teste Grátis</button>
+                </div>
+                <div class="plan-card destaque" data-plan="Premium">
+                  <div class="tag-popular">🔥 MAIS COMPRADO</div>
+                    <div class="plan-name">🔥 Premium</div>
+                    <div class="plan-price">R$ 25,00/mês</div>
+                    <div class="plan-desc"> 1 tela<br>2 Servidores (Podendo troca)<br>Conteúdo completo<br>Estabilidade máxima</div>
+                    <button class="teste-btn" data-plan-name="Premium">🎯 Teste Grátis</button>
+                </div>
+                <div class="plan-card" data-plan="Premium Plus">
+                    <div class="plan-name">🔥Premium Plus</div>
+                    <div class="plan-price">R$ 30,00/mês</div>
+                    <div class="plan-desc">2 telas simultâneas<br>2 Servidores (Podendo troca)<br>Conteúdo completo<br>Estabilidade máxima</div>
+                    <button class="teste-btn" data-plan-name="Premium Plus">🎯 Teste Grátis</button>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button class="back-btn" id="backToStep1">← Voltar</button>
+            </div>
+        </div>
+
+        <div id="step3" class="step">
+            <div class="hero-badge">🚀 Solicitação de Teste Grátis</div>
+            <h2 style="font-size: 1.6rem; margin-bottom: 0.2rem;">Preencha com seus dados</h2>
+            <p style="color:#ccc; margin-bottom: 1rem;">Após enviar, receberemos sua solicitação e liberamos seu teste!</p>
+            
+            <div id="selectedPlanInfo" class="info-plano-selecionado">
+              
+            </div>
+
+            <form id="testeForm">
+                <div class="form-group">
+                    <label>👤 Nome completo *</label>
+                    <input type="text" id="nome" placeholder="Ex: João Silva" required>
+                </div>
+                <div class="form-group">
+                    <label>📱 Aparelho (ex: TV Box, Smart TV, Firestick, Celular) *</label>
+                    <input type="text" id="aparelho" placeholder="Qual aparelho você vai usar? Ex: BTV, MXQ, iPhone" required>
+                </div>
+                <div class="form-group">
+                    <label>🏷️ Marca do aparelho *</label>
+                    <input type="text" id="marca" placeholder="Ex: Samsung, Xiaomi, Amazon, LG, TCL" required>
+                </div>
+               
+                <div class="action-buttons" style="flex-wrap: wrap; gap: 12px;">
+                    <button type="button" class="back-btn" id="backToStep2">← Voltar aos planos</button>
+                    <button type="submit" class="btn-submit" id="sendTesteBtn">📲 Enviar pedido de Teste Grátis</button>
+                </div>
+            </form>
+            <div id="formFeedback" style="margin-top: 1rem;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    const step1Div = document.getElementById('step1');
+    const step2Div = document.getElementById('step2');
+    const step3Div = document.getElementById('step3');
+    const badges = [document.getElementById('step1Badge'), document.getElementById('step2Badge'), document.getElementById('step3Badge')];
+    
+    let selectedPlanForTest = null; 
+
+    function showStep(stepNumber) {
+        step1Div.classList.remove('active-step');
+        step2Div.classList.remove('active-step');
+        step3Div.classList.remove('active-step');
+        if(stepNumber === 1) step1Div.classList.add('active-step');
+        if(stepNumber === 2) step2Div.classList.add('active-step');
+        if(stepNumber === 3) step3Div.classList.add('active-step');
+        
+        badges.forEach((badge, idx) => {
+            if(idx+1 === stepNumber) badge.classList.add('active');
+            else badge.classList.remove('active');
+        });
+    }
+
+    document.getElementById('nextToPlans').addEventListener('click', () => {
+        showStep(2);
+    });
+    document.getElementById('backToStep1').addEventListener('click', () => {
+        showStep(1);
+    });
+    document.getElementById('backToStep2').addEventListener('click', () => {
+        showStep(2);
+    });
+
+    const planTestButtons = document.querySelectorAll('.teste-btn');
+    planTestButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const planName = btn.getAttribute('data-plan-name');
+            selectedPlanForTest = planName;
+           
+            const infoDiv = document.getElementById('selectedPlanInfo');
+            infoDiv.innerHTML = `<strong>🎯 Plano selecionado para teste:</strong> ${selectedPlanForTest} — 4h grátis sem compromisso!`;
+            
+            showStep(3);
+            
+            document.getElementById('testeForm').reset();
+            const feedbackDiv = document.getElementById('formFeedback');
+            feedbackDiv.innerHTML = '';
+        });
+    });
+
+    function ensurePlanSelected() {
+        if(!selectedPlanForTest) {
+            const infoDiv = document.getElementById('selectedPlanInfo');
+            infoDiv.innerHTML = `<strong>⚠️ Nenhum plano selecionado. Volte e escolha um teste grátis.</strong>`;
+            return false;
+        } else {
+            document.getElementById('selectedPlanInfo').innerHTML = `<strong>🎯 Plano selecionado para teste:</strong> ${selectedPlanForTest} — 24h grátis sem compromisso!`;
+            return true;
+        }
+    }
+
+    const observer = new MutationObserver(() => {
+        if(step3Div.classList.contains('active-step')) {
+            if(!selectedPlanForTest) {
+                document.getElementById('selectedPlanInfo').innerHTML = `<strong style="color:#ffaa66;">⚠️ Nenhum plano escolhido. Por favor, volte e clique em "Teste Grátis" em um dos planos.</strong>`;
+            } else {
+                document.getElementById('selectedPlanInfo').innerHTML = `<strong>🎯 Plano selecionado para teste:</strong> ${selectedPlanForTest} — 24h grátis sem compromisso!`;
+            }
+        }
+    });
+    observer.observe(step3Div, { attributes: true, attributeFilter: ['class'] });
+    
+    const form = document.getElementById('testeForm');
+    const feedbackDiv = document.getElementById('formFeedback');
+    const OWNER_PHONE = "5582998360786";  
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const nome = document.getElementById('nome').value.trim();
+        const aparelho = document.getElementById('aparelho').value.trim();
+        const marca = document.getElementById('marca').value.trim();
+        
+        if(!nome) {
+            showFeedback("Por favor, informe seu nome completo.", "error");
+            return;
+        }
+        if(!aparelho) {
+            showFeedback("Qual aparelho você vai usar? (ex: TV Box, Celular)", "error");
+            return;
+        }
+        if(!marca) {
+            showFeedback("Informe a marca do aparelho para compatibilidade.", "error");
+            return;
+        }
+        if(!selectedPlanForTest) {
+            showFeedback("Nenhum plano de teste selecionado! Volte e escolha um plano.", "error");
+            return;
+        }
+        
+        let mensagem = `🆕 *SOLICITAÇÃO DE TESTE GRÁTIS*%0A`;
+        mensagem += `📌 *Plano:* ${selectedPlanForTest}%0A`;
+        mensagem += `👤 *Nome:* ${nome}%0A`;
+        mensagem += `📱 *Aparelho:* ${aparelho}%0A`;
+        mensagem += `🏷️ *Marca:* ${marca}%0A`;
+  
+        
+        const whatsappUrl = `https://wa.me/${OWNER_PHONE}?text=${mensagem}`;
+        
+        showFeedback(`✅ Solicitação enviada! Você será redirecionado para o WhatsApp do suporte. Obrigado por testar o plano ${selectedPlanForTest}.`, "success");
+        
+        setTimeout(() => {
+            window.open(whatsappUrl, '_blank');
+            document.getElementById('nome').value = '';
+            document.getElementById('aparelho').value = '';
+            document.getElementById('marca').value = '';
+       
+            showFeedback("Pronto! A mensagem foi enviada para nossa equipe. Retornaremos em breve.", "success");
+        }, 800);
+    });
+    
+    function showFeedback(msg, type) {
+        feedbackDiv.innerHTML = `<div class="${type === 'error' ? 'error-msg' : 'success-message'}" style="padding: 10px; border-radius: 12px;">${msg}</div>`;
+        setTimeout(() => {
+            if(feedbackDiv.innerHTML.includes(msg)) {
+          
+                setTimeout(() => {
+                    if(feedbackDiv.innerHTML.includes(msg)) feedbackDiv.innerHTML = '';
+                }, 5000);
+            }
+        }, 4000);
+    }
+   
+    console.log("Sistema IPTV: Ao enviar, mensagem será enviada para o WhatsApp do administrador. Altere const OWNER_PHONE para seu número.");
+    
+    document.getElementById('plansContainer').addEventListener('click', (e) => {
+        const testBtn = e.target.closest('.teste-btn');
+        if(testBtn && step2Div.classList.contains('active-step')) {
+            e.preventDefault();
+            const plan = testBtn.getAttribute('data-plan-name');
+            selectedPlanForTest = plan;
+            const infoDiv = document.getElementById('selectedPlanInfo');
+            if(infoDiv) infoDiv.innerHTML = `<strong>🎯 Plano selecionado para teste:</strong> ${selectedPlanForTest} — 4h grátis!`;
+            showStep(3);
+        }
+    });
+    
+    function syncStep3Plan() {
+        if(step3Div.classList.contains('active-step') && selectedPlanForTest) {
+            document.getElementById('selectedPlanInfo').innerHTML = `<strong>🎯 Plano selecionado para teste:</strong> ${selectedPlanForTest} — 4h grátis sem compromisso!`;
+        } else if(step3Div.classList.contains('active-step') && !selectedPlanForTest) {
+            document.getElementById('selectedPlanInfo').innerHTML = `<strong style="color:#ffaa66;">⚠️ Nenhum plano escolhido. Volte e clique em "Teste Grátis".</strong>`;
+        }
+    }
+    setInterval(syncStep3Plan, 200);
+</script>
+</body>
+</html>
